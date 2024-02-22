@@ -3,9 +3,7 @@ import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import License from "@/app/comp/License";
 import {AuiButton} from "@/app/comp/aui/aui-button";
-import {useRouter} from "next/navigation";
 export default function Home() {
-    const router = useRouter();
     const [ step, setStep ] = useState(1);
     function nextStep() {
         history.replaceState({step: step },"AS Install History Manager")
@@ -68,20 +66,15 @@ export default function Home() {
             return (
                 <div className={`w-full h-full flex flex-col justify-between items-center`}>
                     <div className={`flex w-full flex-grow`}>
-                        <Link href={`/dashboard`} className={`w-full h-full`}>
-                            <AuiButton className={`w-full h-full`} theme={`dark`}>Player Dashboard</AuiButton>
-                        </Link>
-                        <Link href={`/dashboard-admin`} className={`w-full h-full`}>
-                            <AuiButton className={`w-full h-full`} theme={`dark`}>Admin Dashboard</AuiButton>
-                        </Link>
+                        <div className={`text-6xl font-[mc-ten] mt-7 text-green-950`}>Install Finish !</div>
                     </div>
                     <div className={`w-full font-semibold`}>
 
                         <AuiButton onClick={()=>{
 
-                            router.push("/")
+                            location.href="/"
                         }} className={`w-full font-normal mt-5 font-[mc-ten] text-xl`}
-                                   theme={`success`}>Finish</AuiButton>
+                                   theme={`success`}>HOME</AuiButton>
                     </div>
                 </div>
 
