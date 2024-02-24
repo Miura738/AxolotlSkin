@@ -1,6 +1,6 @@
 const License = () => {
     return (
-        <div className={`w-full mx-auto font-mono`}>
+        <div className={`mx-auto font-mono`}>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GNU&nbsp;GENERAL&nbsp;PUBLIC&nbsp;LICENSE<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version&nbsp;3,&nbsp;29&nbsp;June&nbsp;2007
             </p>

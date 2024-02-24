@@ -1,0 +1,13 @@
+::-webkit-scrollbar-track{
+background-color: #cbcbcb;
+}
+/*定义滚动条整体的样式*/
+::-webkit-scrollbar{
+width: 14px;
+}
+/*滚动条的样式*/
+::-webkit-scrollbar-thumb{
+    height: 50px;
+background: #563939;
+
+}

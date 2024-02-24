@@ -6,3 +6,8 @@
     font-family: mc-ten;
     src: url("/static/MinecraftTen.woff");
 }
+
+@font-face {
+	font-family: 'Minecraft';
+	src: url('/static/minecraft.woff2') format('woff2');
+}

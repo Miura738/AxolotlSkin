@@ -1,25 +1,37 @@
 'use client';
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
-import License from "@/app/comp/License";
-import {AuiButton} from "@/app/comp/aui/aui-button";
+import {AuiButton} from "@/app/component/aui/aui-button";
+import "./style.css"
+import Database from "@/app/install/database";
+import Eula from "@/app/install/eula";
+import Finish from "@/app/install/finish";
+import Admin from "@/app/install/admin";
 
 export default function Main() {
     useEffect(() => {
         document.title = "Install Application for Axolotl Skin | by Miourasaki Network"
     }, []);
 
-    if (location.pathname != '/install') {
-        location.pathname = "/install"
+    if (typeof window !== 'undefined') {
+        if (location.pathname != '/install') {
+        location.replace("/install")
+        return <></>
+    }else {
+
+        return <InstallComp></InstallComp>
+    }
     }else {
 
         return <InstallComp></InstallComp>
     }
 
+
+
 }
 
 function InstallComp() {
-    const [ step, setStep ] = useState(1);
+    const [ step, setStep ] = useState(0);
     function nextStep() {
         history.replaceState({step: step },"AS Install History Manager")
         setStep(step+1)
@@ -27,6 +39,20 @@ function InstallComp() {
     }
 
     useEffect(() => {
+
+         let favicon = document.querySelector('link[rel="shortcut icon"]') || document.querySelector('link[rel="icon"]');
+
+        let newFavicon = document.createElement('link');
+        newFavicon.rel = 'shortcut icon';
+        newFavicon.href = `/favicon.ico`;
+        newFavicon.type = 'image/x-icon';
+
+        if (favicon) {
+            favicon.parentNode?.replaceChild(newFavicon, favicon);
+        } else {
+            document.head.appendChild(newFavicon);
+        }
+
         const historyChange = (event:PopStateEvent) => {
             setStep(event.state.step)
         }
@@ -37,63 +63,18 @@ function InstallComp() {
         }
     }, []);
 
-    const Eula = () => {
-        return (
-            <>
-                <div className={`flex justify-center w-full text-xl font-[mc-ten] text-gray-800`}>terms of use</div>
-                <div className={`w-full mb-10`}>
-                    <div className={`mb-5`}>1. EULA Agreement{" >"}</div>
-                    <div className={`w-full flex flex-col items-center`}>
-                        <div>NO other EULA!</div>
-                        <div>Please observe local laws</div>
-                        <div>and mojang eula</div>
-                    </div>
-
-                </div>
-                <div className={`w-full mb-10`}>
-                    <div className={`mb-5`}>2. Open source LICENSE{" >"}</div>
-                    <License/>
-                </div>
-                <div className={`mt-5 flex justify-center items-center gap-4  font-[mc-ten] text-xl`}>
-                    <AuiButton onClick={nextStep} className={`w-full`} theme={`success`}>Agree</AuiButton>
-                    <AuiButton onClick={()=>{
-                        alert("没想到会有人点这个.....ᗜˬᗜ")
-                    }} className={`w-full`} theme={`danger`}>Disagree</AuiButton>
-                </div>
-            </>
-        )
-    }
 
     const Main = () => {
-        if (step === 1) {
-            return <Eula/>;
-        }else if (step === 2) {
-            return (
-                <AuiButton onClick={nextStep} className={`w-full`} theme={`success`}>2</AuiButton>
-
-            )
+        if (step === 0) {
+            return <Eula nextStep={nextStep} />;
+        }else if (step === 1) {
+            return <Database nextStep={nextStep} />
+        } else if (step === 2) {
+            return <Admin nextStep={nextStep} />
         } else if (step === 3) {
-            return (
-                <AuiButton onClick={nextStep} className={`w-full`} theme={`success`}>3</AuiButton>
-
-            )
-        } else if (step === 4) {
-            return (
-                <div className={`w-full h-full flex flex-col justify-between items-center`}>
-                    <div className={`flex w-full flex-grow`}>
-                        <div className={`text-6xl font-[mc-ten] mt-7 text-green-950`}>Install Finish !</div>
-                    </div>
-                    <div className={`w-full font-semibold`}>
-
-                        <AuiButton onClick={()=>{
-
-                            location.href="/"
-                        }} className={`w-full font-normal mt-5 font-[mc-ten] text-xl`}
-                                   theme={`success`}>HOME</AuiButton>
-                    </div>
-                </div>
-
-            )
+            return <Admin nextStep={nextStep} />
+        } else if (step === 3) {
+            return <Finish />
         } else {
             window.history.go(-1);
         }
@@ -110,6 +91,7 @@ function InstallComp() {
           <div className={`flex flex-col w-full`}>
               <div className={`flex justify-between items-center`}>
                   <div className={`font-[mc-ten] text-4xl flex items-center pointer-events-none`}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img className={`w-10 h-10 mr-3`} src={`https://api.mio.am/project/axolotl/icon?size=160`}
                            alt={`Icon`}/>
                       <div>Install Application</div>
@@ -147,13 +129,13 @@ function InstallComp() {
 
           </div>
 
-          <div className={`w-full h-full bg-white bg-opacity-50 my-7 flex-grow
+          <div className={`w-full h-full bg-white bg-opacity-50 my-7 flex-grow relative
           px-6 py-7 overflow-auto`}>
               <Main />
           </div>
 
           <div className={`w-full flex justify-between items-end`}>
-              <div>© 2024 「Unnamed-Proj.」</div>
+              <div>© 2024 <a className={`hover:text-pink-700 transition-all`} href={`https://mio.am`} target={`_blank`}>「Miourasaki」</a></div>
               <div className={`flex flex-col items-end`}>
                   <div className={`flex gap-4 mb-3`}>
 
@@ -167,7 +149,7 @@ function InstallComp() {
                                   d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
                           </svg>
                       </Link>
-                      <Link href={`https://docs.unnamed.org.cn/axolotlskin`} target={`_blank`}
+                      <Link href={`https://docs.mio.am/axolotlskin`} target={`_blank`}
                             title={`Docs`}
                             className={`w-8 h-8 border transition-all bg-neutral-200
                           flex justify-center items-center border-neutral-300

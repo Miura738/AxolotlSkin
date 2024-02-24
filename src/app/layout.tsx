@@ -3,7 +3,6 @@ import "../assets/globals.css";
 import fs from "fs";
 import Home from "@/app/install/page";
 import React from "react";
-import getOption from "@/api/options";
 
 
 export const metadata: Metadata = {
