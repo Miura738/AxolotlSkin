@@ -19,8 +19,16 @@ export default async function RootLayout({
 }>) {
     const title = await getOption("site_title") as string;
     const sub = await getOption("site_sub") as string;
+    metadata.title = `${title} ~ ${sub}`;
 
-    metadata.title = `${title} ~ ${sub}`
+    const desc = await getOption("site_desc") as string;
+    metadata.description = desc;
+
+    const icon = await getOption("site_icon") as string;
+    metadata.icons = icon;
+
+
+
 
   if (!fs.existsSync(".env")) {
     return (
