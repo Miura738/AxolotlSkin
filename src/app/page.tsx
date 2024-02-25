@@ -1,20 +1,22 @@
-import getOption from "@/api/options";
-import {Metadata} from "next";
+'use client';
+import Loading from "@/app/component/Loading";
+import {useEffect} from "react";
+import {useRouter} from "next/navigation";
 
 
-
-export const metadata: Metadata = {}
 
 export default async function Home() {
+    const router = useRouter();
 
+    useEffect(() => {
+        router.push("/profile")
+    }, []);
 
-    const title = await getOption("site_title") as string;
-    metadata.title = `Index > ${title}`;
 
   return (
       <div className={`w-screen h-screen bg-[url(/static/bg-wool-light.png)]
 flex items-center justify-center`}>
-          {title}
+        <Loading />
       </div>
   );
 }

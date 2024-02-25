@@ -7,6 +7,9 @@ import * as skinview3d from "skinview3d"
 const Admin = ({nextStep}:{
     nextStep: () => void
 }) => {
+
+    const test:number = 50
+
     const [Query, setQuery] = useState(false);
 
     const [nameTag, setNameTag] = useState("");
@@ -18,7 +21,7 @@ const Admin = ({nextStep}:{
         const skinDocker: HTMLDivElement = document.getElementById("skin_div") as HTMLDivElement
         const skinContainer:HTMLCanvasElement = document.getElementById("skin_container") as HTMLCanvasElement
 
-        const h = skinDocker.offsetHeight -120
+        const h = skinDocker.offsetHeight - test
         const w = h*(3/4)
 
         const skinViewer = new skinview3d.SkinViewer({
@@ -37,17 +40,17 @@ const Admin = ({nextStep}:{
 
         let previousHeight = skinDocker.getBoundingClientRect().height;
 
-        setInterval(() => {
-          const currentHeight = skinDocker.getBoundingClientRect().height;
-          if (previousHeight !== currentHeight) {
-            console.log('元素高度发生变化');
-            // 在此处添加处理代码
-const h = currentHeight -120
-                const w = h*(3/4)
-
-                skinViewer.height = h;
-                skinViewer.width = w;          }
-        }, 1000); // 每隔 1 秒检测一次
+        // setInterval(() => {
+        //   const currentHeight = skinDocker.getBoundingClientRect().height;
+        //   if (previousHeight !== currentHeight) {
+        //     console.log('元素高度发生变化');
+        //     // 在此处添加处理代码
+        //         const h = currentHeight - test
+        //         const w = h*(3/4)
+        //
+        //         skinViewer.height = h;
+        //         skinViewer.width = w;          }
+        // }, 1000); // 每隔 1 秒检测一次
 
     }, []);
 
