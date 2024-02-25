@@ -1,8 +1,8 @@
-import React from "react";
+import React, {ReactNode} from "react";
 
 export interface AuiButtonProps {
     theme?: string;
-    children?: string;
+    children?: ReactNode;
     className?: string;
     onClick?: () => void;
     active?: boolean;

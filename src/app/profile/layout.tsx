@@ -19,6 +19,8 @@ export default async function Layout({
     metadata.title = `Profile > ${title}`;
 
 
+
+
   return (
       <div className={`w-screen h-screen bg-[url(/static/bg-wool-light.png)]
 flex flex-col items-center justify-start`}>
@@ -27,7 +29,7 @@ flex flex-col items-center justify-start`}>
               <div className={`w-56 bg-[#ede5e2]`}></div>
               <div className={`flex-grow`}
                    style={{background: themeColor}}>
-                  <div className={`w-full h-full bg-yellow-800 bg-opacity-30`}>
+                  <div className={`w-full h-full bg-black bg-opacity-10`}>
                       <div className={`w-full bg-black h-12 bg-opacity-35`}></div>
                       {children}
                   </div>
