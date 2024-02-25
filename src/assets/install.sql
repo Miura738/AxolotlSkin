@@ -1,5 +1,4 @@
 CREATE TABLE as_options(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    `key` VARCHAR(255),
+    `key` VARCHAR(255) PRIMARY KEY,
     `value` VARCHAR(255)
 );
