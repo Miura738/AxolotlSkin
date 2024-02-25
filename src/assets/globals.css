@@ -11,3 +11,20 @@
 	font-family: 'Minecraft';
 	src: url('/static/minecraft.woff2') format('woff2');
 }
+
+.rotate {
+    animation: rotate 10s infinite linear;
+    margin-left: 10px;
+    margin-right: 8px;
+
+    /*color: rgb(180, 2, 2);*/
+
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

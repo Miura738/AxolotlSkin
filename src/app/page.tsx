@@ -1,17 +1,20 @@
 import getOption from "@/api/options";
+import {Metadata} from "next";
 
-export default function Home() {
 
-    getOption("site_title").then(result => {
-        console.log(result); // 在这里处理查询到的结果
-    }).catch(error => {
-        console.error(error); // 处理错误
-    });
+
+export const metadata: Metadata = {}
+
+export default async function Home() {
+
+
+    const title = await getOption("site_title") as string;
+    metadata.title = `Index > ${title}`;
 
   return (
-    <div className={`w-screen h-screen bg-[url(/static/bg-wool-light.png)]
-    flex items-center justify-center`}>
-      Index
-    </div>
+      <div className={`w-screen h-screen bg-[url(/static/bg-wool-light.png)]
+flex items-center justify-center`}>
+          {title}
+      </div>
   );
 }

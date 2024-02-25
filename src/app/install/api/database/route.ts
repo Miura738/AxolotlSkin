@@ -2,16 +2,13 @@ import {NextRequest, NextResponse} from "next/server";
 import mysql from "mysql";
 import fs from "fs";
 import * as dotenv from "dotenv";
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
 
-    const host = request.nextUrl.searchParams.get("host")?.toString()
-    const port = Number(request.nextUrl.searchParams.get("port"))
 
-    const username = request.nextUrl.searchParams.get("user")?.toString()
-    const password = request.nextUrl.searchParams.get("pwd")?.toString()
+    const data = await request.json();
 
-    const database = request.nextUrl.searchParams.get("db")?.toString()
-    const prefix = request.nextUrl.searchParams.get("prefix")?.toString()
+    const { host,port,username,password,database,prefix } = data;
+
 
     const connection = mysql.createConnection({
         host: host,

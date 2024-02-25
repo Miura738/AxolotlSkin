@@ -3,6 +3,7 @@ import "../assets/globals.css";
 import fs from "fs";
 import Home from "@/app/install/page";
 import React from "react";
+import getOption from "@/api/options";
 
 
 export const metadata: Metadata = {
@@ -11,11 +12,15 @@ export const metadata: Metadata = {
   icons: "https://api.mio.am/project/axolotl/icon"
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const title = await getOption("site_title") as string;
+    const sub = await getOption("site_sub") as string;
+
+    metadata.title = `${title} ~ ${sub}`
 
   if (!fs.existsSync(".env")) {
     return (

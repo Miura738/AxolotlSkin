@@ -87,7 +87,14 @@ const Database = ({nextStep}:{
         if (formPrefix) prefix = formPrefix;
 
 
-        axios.get(`/install/api/database?host=${host}&port=${port}&user=${user}&pwd=${pwd}&db=${db}&prefix=${prefix}`)
+        axios.post(`/install/api/database`,{
+            host: host,
+            port: port,
+            username: user,
+            password: pwd,
+            database: db,
+            prefix: prefix
+        })
             .then(r => {
                 resetTheme()
 
