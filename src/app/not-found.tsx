@@ -19,7 +19,7 @@ export default async function Custom404() {
                                               p-8 pt-6`}>
           <div className={`w-full flex justify-between`}>
               <Link href={"/"} className={`text-xl`}>{title}</Link>
-              <div className={`text-xl group cursor-pointer`}><span className={`group-hover:translate-x-4 transition-all`}>{'<'}</span><span className={`ml-2`}>Back to previous page</span></div>
+              <div className={`text-lg group cursor-pointer`}><span className={`group-hover:translate-x-4 transition-all`}>{'<'}</span><span className={`ml-2`}>Back to previous page</span></div>
 
           </div>
 
