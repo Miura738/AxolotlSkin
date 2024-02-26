@@ -32,6 +32,8 @@ const Admin = ({nextStep}:{
         })
 
         skinViewer.autoRotate = true;
+        skinViewer.animation = new skinview3d.WalkingAnimation();
+        skinViewer.animation.speed = 0.8;
 
         skinViewer.loadSkin("http://textures.minecraft.net/texture/d90c3970225953c4bef265049ff9ab723b1014836d9afbb5d9823f5444ac3ff9").then(r => r)
         skinViewer.loadCape("http://textures.minecraft.net/texture/f9a76537647989f9a0b6d001e320dac591c359e9e61a31f4ce11c88f207f0ad4").then(r => r)
